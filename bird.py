@@ -1,4 +1,6 @@
 from pico2d import *
+
+import game_framework
 import game_world
 
 
@@ -28,10 +30,28 @@ class Bird:
         self.dir = 0
 
     def draw(self):
-        self.image.draw(self.x, self.y)
+        now_frame = int(self.frame)
+        if self.dir>0:
+            if now_frame < 5:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 0, 183,168, 0,'', self.x, self.y,183,168)
+            elif now_frame < 10:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168, 183,168, 0,'', self.x, self.y,183,168)
+            else:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168*2, 183,168, 0,'', self.x, self.y,183,168)
+        else:
+            if now_frame < 5:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 0, 183,168, 0,'v', self.x, self.y,183,168)
+            elif now_frame < 10:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168, 183,168, 0,'v', self.x, self.y,183,168)
+            else:
+                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168*2, 183,168, 0,'v', self.x, self.y,183,168)
+
+
 
     def update(self):
-        self.x += self.velocity
+
+        self.frame = (self.frame + FRAMES_PER_ACTION*ACTION_PER_TIME*game_framework.frame_time)%14
+        self.x+=self.dir*FLY_SPEED_PPS*game_framework.frame_time
 
         if self.x < 25 or self.x > 1600 - 25:
-            game_world.remove_object(self)
+            self.dir*=-1
