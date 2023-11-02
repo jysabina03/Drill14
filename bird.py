@@ -33,18 +33,18 @@ class Bird:
         now_frame = int(self.frame)
         if self.dir>0:
             if now_frame < 5:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 0, 183,168, 0,'', self.x, self.y,61,56)
+                self.image.clip_composite_draw(int(self.frame) * 183, 0, 183,168, 0,'', self.x, self.y,61,56)
             elif now_frame < 10:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168, 183,168, 0,'', self.x, self.y,61,56)
+                self.image.clip_composite_draw((int(self.frame)-5) * 183, 168, 183,168, 0,'', self.x, self.y,61,56)
             else:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168*2, 183,168, 0,'', self.x, self.y,61,56)
+                self.image.clip_composite_draw((int(self.frame)-10) * 183, 168*2, 183,168, 0,'', self.x, self.y,61,56)
         else:
             if now_frame < 5:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 0, 183,168, 0,'h', self.x, self.y,61,56)
+                self.image.clip_composite_draw(int(self.frame) * 183, 0, 183,168, 0,'h', self.x, self.y,61,56)
             elif now_frame < 10:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168, 183,168, 0,'h', self.x, self.y,61,56)
+                self.image.clip_composite_draw((int(self.frame)-5) * 183, 168, 183,168, 0,'h', self.x, self.y,61,56)
             else:
-                self.image.clip_composite_draw(int(self.frame)%5 * 183, 168*2, 183,168, 0,'h', self.x, self.y,61,56)
+                self.image.clip_composite_draw((int(self.frame)-10) * 183, 168*2, 183,168, 0,'h', self.x, self.y,61,56)
 
 
 

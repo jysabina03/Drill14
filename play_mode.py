@@ -32,7 +32,11 @@ def init():
 
 
     for i in range(0, 10):
-        bird = Bird(100+i*50, 400+(5-i)*20, 1)
+        if i<5:
+            bird = Bird(400+(i)*50, 400+(5-i)*20, 1)
+        else:
+            bird = Bird(400+(i-6)*50, 320+(i-5)*20, 1)
+
         game_world.add_object(bird)
 
 def finish():
